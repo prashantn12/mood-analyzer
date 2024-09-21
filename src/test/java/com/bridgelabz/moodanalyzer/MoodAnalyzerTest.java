@@ -6,10 +6,15 @@ import org.junit.Test;
 public class MoodAnalyzerTest {
 
 
-    @Test
-    public void givenNullMood_ShouldReturnHAPPY() {
+    @Test(expected = MoodAnalysisException.class)
+    public void givenNullMood_shouldThrowMoodAnalysisException() throws MoodAnalysisException {
+        // Arrange
         MoodAnalyzer moodAnalyzer = new MoodAnalyzer(null);
-        String mood = moodAnalyzer.analyzeMood();
-        Assert.assertEquals("HAPPY", mood);
+
+        // Act
+        moodAnalyzer.analyzeMood();  
+
+        // Assert is handled by the expected parameter of the @Test annotation
     }
 }
+
