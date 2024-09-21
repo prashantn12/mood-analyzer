@@ -5,23 +5,37 @@ class MoodAnalyzer {
 
     private String message;
 
+    public MoodAnalyzer() {
+        this.message = "";  // Initialize with an empty string
+    }
+
 
     public MoodAnalyzer(String message) {
         this.message = message;
     }
 
+
     public String analyzeMood() {
-        if (message.contains("Sad")) {
-            return "SAD";
-        } else {
+        try {
+            if (message == null) {
+                throw new NullPointerException("Mood message cannot be null");
+            }
+
+            if (message.contains("Sad")) {
+                return "SAD";
+            } else {
+                return "HAPPY";
+            }
+        } catch (NullPointerException e) {
             return "HAPPY";
         }
     }
 
     public static void main(String[] args) {
-        MoodAnalyzer moodAnalyzer = new MoodAnalyzer("I am in Any Mood");
-        System.out.println(moodAnalyzer.analyzeMood());  // Output: HAPPY
+        MoodAnalyzer moodAnalyzer = new MoodAnalyzer(null);
+        System.out.println(moodAnalyzer.analyzeMood());  // Output: HAPPY (since null is handled)
     }
 }
+
 
 
