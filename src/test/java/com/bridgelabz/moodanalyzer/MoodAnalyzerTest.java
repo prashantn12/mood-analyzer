@@ -2,19 +2,24 @@ package com.bridgelabz.moodanalyzer;
 
 import org.junit.Assert;
 import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
-public class MoodAnalyzerTest {
+    public class MoodAnalyzerTest {
+
+        @Test
+        public void givenEmptyMood_shouldInformUserOfEmptyMood() {
+            try {
+                // Arrange
+                MoodAnalyzer moodAnalyzer = new MoodAnalyzer("");
+
+                // Act
+                moodAnalyzer.analyzeMood();
+            } catch (MoodAnalysisException e) {
+                // Assert
+                assertEquals(MoodAnalysisError.EMPTY_MOOD.getMessage(), e.getMessage());
+            }
+        }
 
 
-    @Test(expected = MoodAnalysisException.class)
-    public void givenNullMood_shouldThrowMoodAnalysisException() throws MoodAnalysisException {
-        // Arrange
-        MoodAnalyzer moodAnalyzer = new MoodAnalyzer(null);
-
-        // Act
-        moodAnalyzer.analyzeMood();  
-
-        // Assert is handled by the expected parameter of the @Test annotation
     }
-}
 
